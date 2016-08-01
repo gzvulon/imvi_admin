@@ -13,18 +13,26 @@
 					<img src="{{post.src}}">
 				</a>
 			</div>
-			<!--<div class="feed-item-text">-->
-				<!--<a class="title" href="{{post.link}}">-->
-					<!--<h2 class="truncate">-->
-						<!--{{post.title | handleUntitled}}-->
-					<!--</h2>-->
-				<!--</a>-->
-				<!--<div class="feed-description">-->
+			<div class="feed-item-text">
+				<a class="title" href="{{post.link}}">
+					<h2 class="truncate">
+						{{post.title}}
+					</h2>
+				</a>
+				<div class="feed-description">
 					<!--<a href="http://www.flickr.com/people/{{post.author_id}}/" class="view-author">{{post.author | extractAuthor}}</a>-->
-					<!--<span class="published">Published: {{post.published | parseDate}}</span>-->
-					<!--<a href="{{post.link}}" class="view-flickr">View on flickr</a>-->
-				<!--</div>-->
-			<!--</div>-->
+					<span class="published">Published: {{post.title}}</span>
+					<a href="{{post.link}}" class="view-flickr">View on flickr</a>
+				</div>
+
+				<div class="feed-description">
+					<!--<a href="http://www.flickr.com/people/{{post.author_id}}/" class="view-author">{{post.author | extractAuthor}}</a>-->
+					<span class="published">Published: {{post.title}}</span>
+					<a href="{{post.link}}" class="view-flickr">View on flickr</a>
+				</div>
+
+				
+			</div>
 		</li>
 	</ul>
 </div>

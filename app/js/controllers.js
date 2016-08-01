@@ -42,9 +42,11 @@ flickrfeedControllers.controller('FeedListCtrl',
                     console.log(response);
 					var items = [];
 					for(var i=0; i<response.data.length; ++i){
+						var el = response.data[i];
 						items.push({
-							link: response.data[i].cdnUrl,
-							src: response.data[i].thumbnailUrl
+							link: el.cdnUrl,
+							src: el.thumbnailUrl,
+							title: el.title
 						})
 					}
 					$scope.feed = {items:items};
