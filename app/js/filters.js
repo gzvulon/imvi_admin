@@ -49,3 +49,9 @@ flickrfeedFilters.filter('parseDate', function() {
 			return ordinal(data[3]) + " " + Months[data[2]-1] + " " + data[1] + " at " + data[4] + ":" + data[5];
 		};
 });
+
+flickrfeedFilters.filter('trusted', ['$sce', function ($sce) {
+	return function(url) {
+		return $sce.trustAsResourceUrl(url);
+	};
+}]);
