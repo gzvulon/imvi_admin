@@ -13,7 +13,14 @@
 					<img src="{{post.src}}">
 				</a>
 			</div>
+
 			<div class="feed-item-text">
+				<p>SDFSDF</p>
+
+				<div ng-controller="Ctrl">
+					<a href="#" editable-text="user.name">{{ user.name || "empty" }}</a>
+				</div>
+
 				<a class="title" href="{{post.link}}">
 					<h2 class="truncate">
 						{{post.title}}

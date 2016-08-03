@@ -2,6 +2,12 @@
 
 var flickrfeedControllers = angular.module('flickrfeedControllers', []);
 
+flickrfeedControllers.controller('Ctrl', function($scope) {
+	$scope.user = {
+		name: 'awesome user'
+	};
+});
+
 flickrfeedControllers.controller('Navbar',
 	function ($scope, $location, Tagger) {
 		$scope.tag = Tagger;
