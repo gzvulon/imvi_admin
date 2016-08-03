@@ -9,9 +9,12 @@
 	<ul>
 		<li ng-repeat="post in feed.items" class="feed-item">
 			<div class="feed-item-img">
-				<a href="{{post.link}}">
-					<img src="{{post.src}}">
-				</a>
+				<!--<a href="{{post.link}}">-->
+					<!--<img src="{{post.src}}">-->
+				<!--</a>-->
+				<video width="240" height="160" controls>
+					<source src="{{post.link | trusted }}" type="video/mp4">
+				</video>
 			</div>
 
 			<div class="feed-item-text">
