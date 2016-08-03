@@ -24,6 +24,9 @@ flickrfeedControllers.controller('FeedListCtrl',
 		$scope.loading = true;
 		$scope.emptylist = false;
 		$scope.tag.text = $routeParams.tag;
+
+
+
 		$scope.$watch('tag.text', function()
 			{
 				$scope.loading = true;
@@ -52,7 +55,8 @@ flickrfeedControllers.controller('FeedListCtrl',
 						items.push({
 							link: el.cdnUrl,
 							src: el.thumbnailUrl,
-							title: el.title
+							title: el.title,
+							showVideo : false
 						})
 					}
 					$scope.feed = {items:items};
@@ -66,6 +70,10 @@ flickrfeedControllers.controller('FeedListCtrl',
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
                 });
+
+				$scope.showImage = function (p){
+					p.showVideo = true;
+				};
 
 
 			});	
