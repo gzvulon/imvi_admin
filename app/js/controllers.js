@@ -49,17 +49,11 @@ flickrfeedControllers.controller('FeedListCtrl',
                 $http.get('http://develop.balerion.im:8000/api/contents').then(function successCallback(response) {
                     console.log("s");
                     console.log(response);
-					var items = [];
 					for(var i=0; i<response.data.length; ++i){
 						var el = response.data[i];
-						items.push({
-							link: el.cdnUrl,
-							src: el.thumbnailUrl,
-							title: el.title,
-							showVideo : false
-						})
+						el.showVideo = false
 					}
-					$scope.feed = {items:items};
+					$scope.feed = {items:response.data};
 
                     // this callback will be called asynchronously
                     // when the response is available
@@ -71,8 +65,8 @@ flickrfeedControllers.controller('FeedListCtrl',
                     // or server returns response with an error status.
                 });
 
-				$scope.showImage = function (p){
-					p.showVideo = true;
+				$scope.showImage = function (el){
+					el.showVideo = true;
 				};
 
 

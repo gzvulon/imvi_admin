@@ -10,31 +10,20 @@
 		<li ng-repeat="post in feed.items" class="feed-item">
 			<div class="feed-item-img">
 				<!--<a href="{{post.link}}" >-->
-					<img src="{{post.src}}" ng-click="showImage(post)" ng-hide="post.showVideo"/>
+					<img src="{{post.thumbnailUrl}}" ng-click="showImage(post)" ng-hide="showVideo"/>
 				<!--</a>-->
 				<video width="240" height="160" controls ng-show=post.showVideo>
-					<source src="{{post.link | trusted }}" type="video/mp4">
-				<!--</video>-->
+					<source src="{{post.cdnUrl | trusted }}" type="video/mp4">
+				</video>
 			</div>
 
 			<div class="feed-item-text">
-				<!--<p>SDFSDF</p>-->
 
-				<!--<div ng-controller="Ctrl">-->
-					<!--<a href="#" editable-text="user.name">{{ user.name || "empty" }}</a>-->
-				<!--</div>-->
-				<a href="#" editable-text="post.title">{{ post.title || "empty" }}</a>
+				<a editable-text="post.title">{{ post.title || "empty" }}</a>
 
-				<!--<a class="title" href="{{post.link}}">-->
-					<!--<h2 class="truncate">-->
-						<!--<a href="#" editable-text=post.title">{{ post.title || "empty" }}</a>-->
-						<!--&lt;!&ndash;{{post.title}}&ndash;&gt;-->
-					<!--</h2>-->
-				<!--</a>-->
 				<div class="feed-description">
-					<!--<a href="http://www.flickr.com/people/{{post.author_id}}/" class="view-author">{{post.author | extractAuthor}}</a>-->
-					<span class="published">Published: {{post.title}}</span>
-					<a href="{{post.link}}" class="view-flickr">View on flickr</a>
+					<a editable-text="post.title">{{ post.title || "empty" }}</a>
+					<span class="published">State: {{post.title}}</span>
 				</div>
 
 				<div class="feed-description">
