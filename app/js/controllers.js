@@ -27,50 +27,32 @@ flickrfeedControllers.controller('FeedListCtrl',
 
 
 
-		$scope.$watch('tag.text', function()
-			{
-				$scope.loading = true;
-				$scope.emptylist = false;
-				var newTag = $scope.tag.text;
-				$http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne?tags=' + $scope.tag.text + '&tagmode=all&format=json&jsoncallback=JSON_CALLBACK').success(function(data) {
-					//if ($scope.tag.text === newTag) {
-					//	$scope.loading = false;
-					//	$scope.feed = data;
-					//	if ($scope.feed.items.length === 0) {
-					//		$scope.emptylist = true;
-					//	}
-					//	// avoid text to be inserted when we empty tthe input field
-					//	if ($scope.tag.text !== ""){
-					//		$location.path("/feed/" + $scope.tag.text);
-					//	}
-					//}
-				});
-                console.log("v");
-                $http.get('http://develop.balerion.im:8000/api/contents').then(function successCallback(response) {
-                    console.log("s");
-                    console.log(response);
-					for(var i=0; i<response.data.length; ++i){
-						var el = response.data[i];
-						el.showVideo = false
-					}
-					$scope.feed = {items:response.data};
+		$scope.loading = true;
+		$scope.emptylist = false;
 
-                    // this callback will be called asynchronously
-                    // when the response is available
-                }, function errorCallback(response) {
-                    console.log("e");
-                    console.log(response);
+		console.log("v");
+		$http.get('http://develop.balerion.im:8000/api/contents').then(function successCallback(response) {
+			console.log("s");
+			console.log(response);
+			for(var i=0; i<response.data.length; ++i){
+				var el = response.data[i];
+				el.showVideo = false
+			}
+			$scope.feed = {items:response.data};
 
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                });
+			// this callback will be called asynchronously
+			// when the response is available
+		}, function errorCallback(response) {
+			console.log("e");
+			console.log(response);
 
-				$scope.showImage = function (el){
-					el.showVideo = true;
-				};
+			// called asynchronously if an error occurs
+			// or server returns response with an error status.
+		});
 
-
-			});	
+		$scope.showImage = function (el){
+			el.showVideo = true;
+		};
 	});
 
 flickrfeedControllers.controller('FeedPostCtrl',
