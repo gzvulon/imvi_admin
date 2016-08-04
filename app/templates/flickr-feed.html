@@ -9,9 +9,7 @@
 	<ul>
 		<li ng-repeat="post in feed.items" class="feed-item">
 			<div class="feed-item-img">
-				<!--<a href="{{post.link}}" >-->
-					<img src="{{post.thumbnailUrl}}" ng-click="showImage(post)" ng-hide="showVideo"/>
-				<!--</a>-->
+				<img src="{{post.thumbnailUrl}}" ng-click="showImage(post)" ng-hide="post.showVideo"/>
 				<video width="240" height="160" controls ng-show=post.showVideo>
 					<source src="{{post.cdnUrl | trusted }}" type="video/mp4">
 				</video>
@@ -22,7 +20,7 @@
 				<a editable-text="post.title">{{ post.title || "empty" }}</a>
 
 				<div class="feed-description">
-					<a editable-text="post.title">{{ post.title || "empty" }}</a>
+					<a editable-text="post.title">{{ post.title || "empty" }}</a><br>
 					<span class="published">State: {{post.title}}</span>
 				</div>
 
