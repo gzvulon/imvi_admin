@@ -4,30 +4,30 @@
 		<span class="letterpress">Loading ...</span>
 	</div>
 	<div ng-show="emptylist" class="top-of-feed-container">
-		<span class="letterpress">There is no post with this tag</span>
+		<span class="letterpress">There is no el with this tag</span>
 	</div>
 	<ul>
-		<li ng-repeat="post in feed.items" class="feed-item">
+		<li ng-repeat="el in feed.items" class="feed-item">
 			<div class="feed-item-img">
-				<img src="{{post.thumbnailUrl}}" ng-click="showImage(post)" ng-hide="post.showVideo"/>
-				<video width="240" height="160" controls ng-show=post.showVideo>
-					<source src="{{post.cdnUrl | trusted }}" type="video/mp4">
+				<img src="{{el.thumbnailUrl}}" ng-click="showImage(el)" ng-hide="el.showVideo"/>
+				<video width="240" height="160" controls ng-show=el.showVideo>
+					<source src="{{el.cdnUrl | trusted }}" type="video/mp4">
 				</video>
 			</div>
 
 			<div class="feed-item-text">
 
-				<a editable-text="post.title">{{ post.title || "empty" }}</a>
+				<a editable-text="el.title">{{ el.title || "empty" }}</a>
 
 				<div class="feed-description">
-					<a editable-text="post.title">{{ post.title || "empty" }}</a><br>
-					<span class="published">State: {{post.title}}</span>
+					<a editable-text="el.title">{{ el.title || "empty" }}</a><br>
+					<span class="published">State: {{el.title}}</span>
 				</div>
 
 				<div class="feed-description">
-					<!--<a href="http://www.flickr.com/people/{{post.author_id}}/" class="view-author">{{post.author | extractAuthor}}</a>-->
-					<span class="published">Published: {{post.title}}</span>
-					<a href="{{post.link}}" class="view-flickr">View on flickr</a>
+					<!--<a href="http://www.flickr.com/people/{{el.author_id}}/" class="view-author">{{el.author | extractAuthor}}</a>-->
+					<span class="published">Published: {{el.title}}</span>
+					<a href="{{el.link}}" class="view-flickr">View on flickr</a>
 				</div>
 
 
