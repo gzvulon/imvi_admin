@@ -15,18 +15,32 @@
 				</video>
 			</div>
 
+
+
 			<div class="feed-item-text">
 				<a editable-text="el.title">{{ el.title || "empty" }}</a>
 				<div class="feed-description">
-					<a editable-text="el.state">State:  {{ el.state || "empty" }}</a><br>
+					<form name="myForm" ng-controller="ExampleController">
+
+						<label ng-repeat="el in scheme.statuses" >
+							<input type="radio" ng-model="userform.status" value="el.value">
+							{{ el.caption }}
+						</label><br/>
+						<!---->
+						<!--<label>-->
+							<!--<input type="radio" nglabell="color.name" ng-value="specialValue">-->
+							<!--Green-->
+						<!--</label><br/>-->
+						<!--<label>-->
+							<!--<input type="radio" ng-model="color.name" value="blue">-->
+							<!--Blue-->
+						<!--</label><br/>-->
+						<!--<tt>color = {{color.name | json}}</tt><br/>-->
+					</form>
 				</div>
 			</div>
 
-			<div ng-controller="RadiolistCtrl">
-				<a href="#" editable-radiolist="user.status" e-ng-options="s.value as s.text for s in ::statuses track by s.value">
-					{{ showStatus() }}
-				</a>
-			</div>
+
 		</li>
 	</ul>
 </div>

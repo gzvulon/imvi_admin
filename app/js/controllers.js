@@ -70,3 +70,29 @@ flickrfeedControllers.controller('RadiolistCtrl', function($scope, $filter) {
 		return ($scope.user.status && selected.length) ? selected[0].text : 'Not set';
 	};
 });
+
+
+flickrfeedControllers.controller('ExampleController', ['$scope', function($scope) {
+	$scope.color = {
+		name: 'blue'
+	};
+	$scope.userform = {
+		status: 'blue'
+	};
+	$scope.specialValue = {
+		"id": "12345",
+		"value": "green"
+	};
+	$scope.scheme = {
+		statuses: [
+			{
+				value: 'Approved',
+				caption: 'Approved'
+			},
+			{
+				value: 'Declined',
+				caption: 'Declined'
+			}
+		]
+	};
+}])
