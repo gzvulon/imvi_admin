@@ -21,21 +21,65 @@
 				<a editable-text="el.title">{{ el.title || "empty" }}</a>
 				<div class="feed-description">
 					<form name="myForm" ng-controller="ExampleController">
+						<div class="feed-item-form-text">
+							<tt>State:</tt>
+							<label ng-repeat="field in scheme.statuses">
+								<input type="radio" ng-model="userform.status" ng-value="field">
+								{{ field }}
+							</label>
+							<br/>
+							<tt>color = {{ userform.status | json}}</tt><br/>
+						</div>
 
-						<label ng-repeat="el in scheme.statuses" >
-							<input type="radio" ng-model="userform.status" value="el.value">
-							{{ el.caption }}
-						</label><br/>
-						<!---->
-						<!--<label>-->
-							<!--<input type="radio" nglabell="color.name" ng-value="specialValue">-->
-							<!--Green-->
-						<!--</label><br/>-->
-						<!--<label>-->
-							<!--<input type="radio" ng-model="color.name" value="blue">-->
-							<!--Blue-->
-						<!--</label><br/>-->
-						<!--<tt>color = {{color.name | json}}</tt><br/>-->
+						<div class="feed-item-form-text">
+							<tt>user channels:</tt>
+							<label ng-repeat="tag in scheme.user_channels">
+								<input type="checkbox" ng-model="userform.tags[tag]">
+								{{ tag }} <br/>
+							</label>
+							<br/>
+							<tt>color = {{ userform.tags | json}}</tt><br/>
+							<div class="feed-item-form-text">
+						</div>
+
+						<tt>Temporal:</tt>
+						<label>
+							<input type="checkbox" ng-model="userform.tags['temporal']">
+						</label>
+						<br/>
+
+						<tt>objectionable channels:</tt>
+						<label ng-repeat="tag in scheme.objectionable">
+							<input type="checkbox" ng-model="userform.tags[tag]">
+							{{ tag }} <br/>
+						</label>
+						<br/>
+						<tt>color = {{ userform.tags | json}}</tt><br/>
+
+						<tt>copy rights:</tt>
+						<label ng-repeat="tag in scheme.copy_rights">
+							<input type="checkbox" ng-model="userform.tags[tag]">
+							{{ tag }} <br/>
+						</label>
+						<br/>
+						<tt>color = {{ userform.tags | json}}</tt><br/>
+
+						<tt>Ranks:</tt>
+						<label ng-repeat="field in scheme.ranks">
+							<input type="radio" ng-model="userform.rank" ng-value="field">
+							{{ field }}
+						</label>
+						<br/>
+						<tt>color = {{ userform.rank | json}}</tt><br/>
+
+						<tt>Languages:</tt>
+						<label ng-repeat="field in scheme.languages">
+							<input type="radio" ng-model="userform.language" ng-value="field">
+							{{ field }}
+						</label>
+						<br/>
+						<tt>color = {{ userform.language | json}}</tt><br/>
+
 					</form>
 				</div>
 			</div>

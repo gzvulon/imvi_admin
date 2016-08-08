@@ -32,7 +32,6 @@ flickrfeedControllers.controller('FeedListCtrl',
 
 		console.log("v");
 		$http.get('http://develop.balerion.im:8000/api/contents').then(function successCallback(response) {
-			console.log("s");
 			console.log(response);
 			for(var i=0; i<response.data.length; ++i){
 				var el = response.data[i];
@@ -72,27 +71,37 @@ flickrfeedControllers.controller('RadiolistCtrl', function($scope, $filter) {
 });
 
 
-flickrfeedControllers.controller('ExampleController', ['$scope', function($scope) {
-	$scope.color = {
-		name: 'blue'
-	};
+flickrfeedControllers.controller('ExampleController',
+	['$scope', '$http', function($scope, $http) {
 	$scope.userform = {
-		status: 'blue'
+		status: 'blue',
+		tags: {
+			"Funny": true,
+			"Temporal": false
+		},
+		rank: 1,
+		language: "Global"
 	};
 	$scope.specialValue = {
 		"id": "12345",
 		"value": "green"
 	};
+	// $scope.scheme = {
+	// 	statuses: [
+	// 		'Approved','Declined','Reported'
+	// 	]
+	// };
+
+	// $http.get('http://develop.balerion.im:8000/api/scheme').then(function successCallback(response) {
+	// 	console.log(response);
+	// 	$scope.scheme = response;
+	// });
 	$scope.scheme = {
-		statuses: [
-			{
-				value: 'Approved',
-				caption: 'Approved'
-			},
-			{
-				value: 'Declined',
-				caption: 'Declined'
-			}
-		]
-	};
-}])
+		"copy_rights": ["Watermark", "Professional", "UserGenerated"],
+		"objectionable": ["Violence", "Porn", "Sensitive", "Rude"],
+		"user_channels": ["Funny", "News", "Animals", "Sports", "Music", "Food", "Travel", "Fashion", "Religion", "Accidents", "Disasters", "Art"],
+		"languages": ["Global", "English", "Hebrew", "Russian", "Spanish", "Portuguese", "Arabic"],
+		"ranks": ["1", "2", "3", "4", "5"],
+		"statuses": ["Approved", "Declined", "Pending", "Unknown", "Uploaded", "Reported"]
+	}
+}]);
