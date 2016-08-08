@@ -55,42 +55,18 @@ flickrfeedControllers.controller('FeedListCtrl',
 		};
 	});
 
-flickrfeedControllers.controller('FeedPostCtrl',
-	function ($scope, $routeParams, $http, $sce, Tagger) {
-		$scope.tag = Tagger;
-		$scope.tag.text = $routeParams.tag;
-		$scope.loading = true;
-		$scope.notfound = false;
-		$scope.author = $routeParams.author;
-		$scope.postId = $routeParams.postId;
-		// make the input not edidsf=p[edofklns npjoedfkpl[table
-		$http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne?tags=' + $scope.tag.text + '&tagmode=all&format=json&jsoncallback=JSON_CALLBACK').success(function(data) {
-			$scope.feed = data;
-			for (var post in data.items) {
-				if (data.items[post].link == "http://www.flickr.com/photos/"+ $routeParams.author +"/"+ $routeParams.postId +"/"){
-					$scope.post = data.items[post];
+flickrfeedControllers.controller('RadiolistCtrl', function($scope, $filter) {
+	$scope.user = {
+		status: 2
+	};
 
-					//generate the description
-					var descrPatt = /<p>.+<p>.+<p>(.+)<\/p>/;
-					var extract = descrPatt.exec($scope.post.description);
-					if (extract == null) {
-						$scope.description = $sce.trustAsHtml("<i>No descritption available for this picture</i>");
-					} else {
-						$scope.description = $sce.trustAsHtml(extract[1]);
-					}
+	$scope.statuses = [
+		{value: 1, text: 'status1'},
+		{value: 2, text: 'status2'}
+	];
 
-					break;
-				}
-			};
-
-			$scope.loading = false;
-			if ($scope.post === undefined) {
-				$scope.notfound = true;
-			}
-		});
-
-		$scope.back = function() 
-			{
-		    	window.history.back();
-		  	};
-	});
+	$scope.showStatus = function() {
+		var selected = $filter('filter')($scope.statuses, {value: $scope.user.status});
+		return ($scope.user.status && selected.length) ? selected[0].text : 'Not set';
+	};
+});

@@ -25,10 +25,6 @@ flickrfeedApp.config(['$routeProvider',
         templateUrl: 'templates/flickr-feed.html',
         controller: 'FeedListCtrl'
       }).
-      when('/post/:tag/:author/:postId', {
-        templateUrl: 'templates/flickr-post.html',
-        controller: 'FeedPostCtrl'
-      }).
       otherwise({
         redirectTo: '/feed/potato'
       });

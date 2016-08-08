@@ -323,3 +323,9 @@ a.title {
     margin-top: 0; }
   .top-of-feed-container span {
     line-height: 1.5em; }
+
+
+.editable-radiolist label {
+  display: block;
+}
+

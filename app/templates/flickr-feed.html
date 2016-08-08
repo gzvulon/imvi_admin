@@ -16,21 +16,16 @@
 			</div>
 
 			<div class="feed-item-text">
-
 				<a editable-text="el.title">{{ el.title || "empty" }}</a>
-
 				<div class="feed-description">
-					<a editable-text="el.title">{{ el.title || "empty" }}</a><br>
-					<span class="published">State: {{el.title}}</span>
+					<a editable-text="el.state">State:  {{ el.state || "empty" }}</a><br>
 				</div>
+			</div>
 
-				<div class="feed-description">
-					<!--<a href="http://www.flickr.com/people/{{el.author_id}}/" class="view-author">{{el.author | extractAuthor}}</a>-->
-					<span class="published">Published: {{el.title}}</span>
-					<a href="{{el.link}}" class="view-flickr">View on flickr</a>
-				</div>
-
-
+			<div ng-controller="RadiolistCtrl">
+				<a href="#" editable-radiolist="user.status" e-ng-options="s.value as s.text for s in ::statuses track by s.value">
+					{{ showStatus() }}
+				</a>
 			</div>
 		</li>
 	</ul>
