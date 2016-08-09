@@ -99,7 +99,7 @@ flickrfeedControllers.controller('ExampleController',
 	$scope.scheme = {
 		"copy_rights": ["Watermark", "Professional", "UserGenerated"],
 		"objectionable": ["Violence", "Porn", "Sensitive", "Rude"],
-		"user_channels": ["Funny", "News", "Animals", "Sports", "Music", "Food", "Travel", "Fashion", "Religion", "Accidents", "Disasters", "Art"],
+		"user_channels": ["Funny", "News", "Animals", "Sports", "Music", "Food", "Travel", "Fashion", "Religion", "Accidents", "Disasters", "Art", "Temporal"],
 		"languages": ["Global", "English", "Hebrew", "Russian", "Spanish", "Portuguese", "Arabic"],
 		"ranks": ["1", "2", "3", "4", "5"],
 		"statuses": ["Approved", "Declined", "Pending", "Unknown", "Uploaded", "Reported"]
