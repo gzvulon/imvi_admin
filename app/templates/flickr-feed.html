@@ -10,93 +10,103 @@
 		<li ng-repeat="el in feed.items" class="feed-item">
 			<div class="feed-item-img">
 				<img src="{{el.thumbnailUrl}}" ng-click="showImage(el)" ng-hide="el.showVideo"/>
-				<video width="240" height="160" controls ng-show=el.showVideo>
+				<video width="240" height="350" controls ng-show=el.showVideo>
 					<source src="{{el.cdnUrl | trusted }}" type="video/mp4">
 				</video>
 			</div>
 
-
-
 			<div class="feed-item-text">
-				<a editable-text="el.title">{{ el.title || "empty" }}</a>
 				<div class="feed-description">
 					<form name="myForm" ng-controller="ExampleController">
-
-						<div class="row">
+						<div class="row odd-row input-group-lg">
 							<div class="col-md-4">
-								<h4>State:</h4>
+								<h5>Title:</h5>
+							</div>
+							<input type="text" ng-model="userform.title" ng-value="el.title">
+						</div>
+
+						<div class="row even-row">
+							<div class="col-md-4">
+								<h5>State:</h5>
 							</div>
 
 							<div class="col-md-2" ng-repeat="field in scheme.statuses">
-								<label >
+
+								<label class="checkbox-inline">
 									<input type="radio" ng-model="userform.status" ng-value="field">
 									{{ field }}
 								</label>
 							</div>
 						</div>
 
-						<div class="row">
+						<div class="row odd-row">
 							<div class="col-md-4">
-								<h4>user channels:</h4>
+								<h5>user channels:</h5>
 							</div>
-
 							<div class="col-md-2" ng-repeat="tag in scheme.user_channels">
-								<label >
+								<label class="checkbox-inline">
 									<input type="checkbox" ng-model="userform.tags[tag]">
 									{{ tag }} <br/>
 								</label>
 							</div>
 						</div>
 
-						<div class="row">
+						<div class="row even-row">
 							<div class="col-md-4">
-								<h4>Temporal:</h4>
+								<h5>Objectionable Channels:</h5>
 							</div>
 
-							<div class="col-md-2">
-								<label>
-									<input type="checkbox" ng-model="userform.tags['temporal']">
+							<div class="col-md-2" ng-repeat="tag in scheme.objectionable">
+								<label class="checkbox-inline">
+									<input type="checkbox" ng-model="userform.tags[tag]">
+									{{ tag }} <br/>
 								</label>
 							</div>
 						</div>
 
-						<tt>objectionable channels:</tt>
-						<label ng-repeat="tag in scheme.objectionable">
-							<input type="checkbox" ng-model="userform.tags[tag]">
-							{{ tag }} <br/>
-						</label>
-						<br/>
-						<tt>color = {{ userform.tags | json}}</tt><br/>
+						<div class="row odd-row">
+							<div class="col-md-4">
+								<h5>Copy Rights:</h5>
+							</div>
 
-						<tt>copy rights:</tt>
-						<label ng-repeat="tag in scheme.copy_rights">
-							<input type="checkbox" ng-model="userform.tags[tag]">
-							{{ tag }} <br/>
-						</label>
-						<br/>
-						<tt>color = {{ userform.tags | json}}</tt><br/>
+							<div class="col-md-2" ng-repeat="tag in scheme.copy_rights">
+								<label class="checkbox-inline">
+									<input type="checkbox" ng-model="userform.tags[tag]">
+									{{ tag }} <br/>
+								</label>
+							</div>
+						</div>
 
-						<tt>Ranks:</tt>
-						<label ng-repeat="field in scheme.ranks">
-							<input type="radio" ng-model="userform.rank" ng-value="field">
-							{{ field }}
-						</label>
-						<br/>
-						<tt>color = {{ userform.rank | json}}</tt><br/>
+						<div class="row even-row">
+							<div class="col-md-2">
+								<h5>Ranks:</h5>
+							</div>
 
-						<tt>Languages:</tt>
-						<label ng-repeat="field in scheme.languages">
-							<input type="radio" ng-model="userform.language" ng-value="field">
-							{{ field }}
-						</label>
-						<br/>
-						<tt>color = {{ userform.language | json}}</tt><br/>
+							<div class="col-md-2" ng-repeat="field in scheme.ranks">
+								<label class="checkbox-inline">
+									<input type="radio" ng-model="userform.rank" ng-value="field">
+									{{ field }}
+								</label>
+							</div>
+						</div>
 
+						<div class="row odd-row">
+							<div class="col-md-4">
+								<h5>Languages:</h5>
+							</div>
+
+							<div class="col-md-2" ng-repeat="field in scheme.languages">
+								<label class="checkbox-inline">
+									<input type="radio" ng-model="userform.language" ng-value="field">
+									{{ field }}
+								</label>
+							</div>
+						</div>
+						<br>
+						<tt>Input = {{ userform | json}}</tt><br/>
 					</form>
 				</div>
 			</div>
-
-
 		</li>
 	</ul>
 </div>
