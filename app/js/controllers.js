@@ -54,27 +54,12 @@ flickrfeedControllers.controller('FeedListCtrl',
 		};
 	});
 
-flickrfeedControllers.controller('RadiolistCtrl', function($scope, $filter) {
-	$scope.user = {
-		status: 2
-	};
-
-	$scope.statuses = [
-		{value: 1, text: 'status1'},
-		{value: 2, text: 'status2'}
-	];
-
-	$scope.showStatus = function() {
-		var selected = $filter('filter')($scope.statuses, {value: $scope.user.status});
-		return ($scope.user.status && selected.length) ? selected[0].text : 'Not set';
-	};
-});
-
 
 flickrfeedControllers.controller('ExampleController',
 	['$scope', '$http', function($scope, $http) {
 	$scope.userform = {
-		status: 'blue',
+		client_id: 'xxxroei',
+		status: 'Uploaded',
 		tags: {
 			"Funny": true,
 			"Temporal": false
@@ -103,5 +88,56 @@ flickrfeedControllers.controller('ExampleController',
 		"languages": ["Global", "English", "Hebrew", "Russian", "Spanish", "Portuguese", "Arabic"],
 		"ranks": ["1", "2", "3", "4", "5"],
 		"statuses": ["Approved", "Declined", "Pending", "Unknown", "Uploaded", "Reported"]
-	}
+	};
+
+	// calling our submit function.
+	$scope.submitForm = function() {
+		var url = 'http://develop.balerion.im:8000/api/content';
+		var data = $scope.userform; //forms user object
+		console.log("Send data to server...");
+		console.log(data);
+		// Posting data to php file
+		$http({
+			method  : 'POST',
+			url     : url,
+			data    : data,
+			// headers : {'Content-Type': 'application/json'}
+		})
+			.success(function(response) {
+				if (response.errors) {
+					// Showing errors.
+					console.log(response);
+					$scope.errorName = response.errors.name;
+					$scope.errorUserName = response.errors.username;
+					$scope.errorEmail = response.errors.email;
+				} else {
+					$scope.message = response.message;
+				}
+			})
+			.error(function errorCallback(response) {
+				console.log("e");
+				console.log(response);
+
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+			});
+	};
 }]);
+
+
+
+flickrfeedControllers.controller('RadiolistCtrl', function($scope, $filter) {
+	$scope.user = {
+		status: 2
+	};
+
+	$scope.statuses = [
+		{value: 1, text: 'status1'},
+		{value: 2, text: 'status2'}
+	];
+
+	$scope.showStatus = function() {
+		var selected = $filter('filter')($scope.statuses, {value: $scope.user.status});
+		return ($scope.user.status && selected.length) ? selected[0].text : 'Not set';
+	};
+});

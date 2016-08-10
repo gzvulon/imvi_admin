@@ -17,7 +17,7 @@
 
 			<div class="feed-item-text">
 				<div class="feed-description">
-					<form name="myForm" ng-controller="ExampleController">
+					<form name="myForm" ng-controller="ExampleController" ng-submit="submitForm()">
 						<div class="row odd-row input-group-lg">
 							<div class="col-md-4">
 								<h5>Title:</h5>
@@ -90,6 +90,7 @@
 							</div>
 						</div>
 
+						<!-- Languages -->
 						<div class="row odd-row">
 							<div class="col-md-4">
 								<h5>Languages:</h5>
@@ -102,6 +103,12 @@
 								</label>
 							</div>
 						</div>
+
+						<!-- SUBMIT BUTTON -->
+						<button type="submit" class="btn btn-success btn-lg btn-block">
+							<span class="glyphicon glyphicon-flash"></span> Submit!
+						</button>
+
 						<br>
 						<tt>Input = {{ userform | json}}</tt><br/>
 					</form>
