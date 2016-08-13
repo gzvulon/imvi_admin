@@ -10,14 +10,14 @@
 		<li ng-repeat="el in feed.items" class="feed-item">
 			<div class="feed-item-img">
 				<img src="{{el.thumbnailUrl}}" ng-click="showImage(el)" ng-hide="el.showVideo"/>
-				<video width="240" height="350" controls ng-show=el.showVideo>
+				<video width="320" height="280" controls ng-show=el.showVideo>
 					<source src="{{el.cdnUrl | trusted }}" type="video/mp4">
 				</video>
 			</div>
 
 			<div class="feed-item-text">
 				<div class="feed-description">
-					<form name="myForm" ng-controller="ExampleController" ng-submit="submitForm()">
+					<form name="myForm" ng-controller="ExampleController" ng-submit="submitForm(el)">
 						<div class="row odd-row input-group-lg">
 							<div class="col-md-4">
 								<h5>Title:</h5>

@@ -111,11 +111,11 @@ ul > li {
   top: 0;
   bottom: 0;
   right: 0;
-  left: 240px;
+  left: 320px;
   padding: 0px 15px; }
 
 .feed-item-img {
-  width: 240px;
+  width: 320px;
   height: 350px;
   overflow: hidden;
   display: inline-block;

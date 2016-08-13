@@ -91,16 +91,17 @@ flickrfeedControllers.controller('ExampleController',
 	};
 
 	// calling our submit function.
-	$scope.submitForm = function() {
+	$scope.submitForm = function(el) {
 		var url = 'http://develop.balerion.im:8000/api/content';
 		var data = $scope.userform; //forms user object
+		data.contentId = el.contentId;
 		console.log("Send data to server...");
 		console.log(data);
 		// Posting data to php file
 		$http({
 			method  : 'POST',
 			url     : url,
-			data    : data,
+			data    : data
 			// headers : {'Content-Type': 'application/json'}
 		})
 			.success(function(response) {
