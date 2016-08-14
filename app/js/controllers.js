@@ -47,6 +47,15 @@ flickrfeedControllers.controller('FeedListCtrl',
 		$scope.showImage = function (el){
 			el.showVideo = true;
 		};
+
+		$scope.scheme = {
+			"copy_rights": ["Watermark", "Professional", "UserGenerated"],
+			"objectionable": ["Violence", "Porn", "Sensitive", "Rude"],
+			"user_channels": ["Funny", "News", "Animals", "Sports", "Music", "Food", "Travel", "Fashion", "Religion", "Accidents", "Disasters", "Art", "Temporal"],
+			"languages": ["Global", "English", "Hebrew", "Russian", "Spanish", "Portuguese", "Arabic"],
+			"ranks": ["1", "2", "3", "4", "5"],
+			"statuses": ["Approved", "Declined", "Pending", "Unknown", "Uploaded", "Reported"]
+		};
 	});
 
 
@@ -63,20 +72,12 @@ flickrfeedControllers.controller('ExampleController',
 		language: "Global"
 	};
 
-	$scope.scheme = {
-		"copy_rights": ["Watermark", "Professional", "UserGenerated"],
-		"objectionable": ["Violence", "Porn", "Sensitive", "Rude"],
-		"user_channels": ["Funny", "News", "Animals", "Sports", "Music", "Food", "Travel", "Fashion", "Religion", "Accidents", "Disasters", "Art", "Temporal"],
-		"languages": ["Global", "English", "Hebrew", "Russian", "Spanish", "Portuguese", "Arabic"],
-		"ranks": ["1", "2", "3", "4", "5"],
-		"statuses": ["Approved", "Declined", "Pending", "Unknown", "Uploaded", "Reported"]
-	};
-
-	balerionDataService.getScheme().success(function (response) {
-		//Dig into the response to get the relevant data
-		console.log("got scheme!");
-		console.log(response);
-	});
+	// balerionDataService.getScheme().success(function (response) {
+	// 	//Dig into the response to get the relevant data
+	// 	$scope.scheme = response;
+	// 	console.log("got scheme!");
+	// 	console.log(response);
+	// });
 
 	// calling our submit function.
 	$scope.submitForm = function(el) {

@@ -22,7 +22,10 @@
 							<div class="col-md-4">
 								<h5>Title:</h5>
 							</div>
-							<input type="text" ng-model="userform.title" ng-value="el.title">
+							<label class="edit-inline">
+								<input type="text" ng-model="userform.title" ng-value="el.title">
+								{{ el.title }}
+							</label>
 						</div>
 
 						<div class="row even-row">
