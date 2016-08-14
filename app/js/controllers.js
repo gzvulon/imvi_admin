@@ -22,16 +22,11 @@ flickrfeedControllers.controller('FeedListCtrl',
 	function ($scope, $http, $routeParams, $location, Tagger) {
 		$scope.tag = Tagger;
 		$scope.loading = true;
-		$scope.emptylist = false;
 		$scope.tag.text = $routeParams.tag;
-
-
-
-		$scope.loading = true;
 		$scope.emptylist = false;
 
 		console.log("v");
-		$http.get('http://develop.balerion.im:8000/api/contents').then(function successCallback(response) {
+		$http.get('http://develop.balerion.im:9797/api/contents').then(function successCallback(response) {
 			console.log(response);
 			for(var i=0; i<response.data.length; ++i){
 				var el = response.data[i];
@@ -56,7 +51,7 @@ flickrfeedControllers.controller('FeedListCtrl',
 
 
 flickrfeedControllers.controller('ExampleController',
-	['$scope', '$http', function($scope, $http) {
+	['$scope', '$http', 'balerionDataService', function($scope, $http, balerionDataService) {
 	$scope.userform = {
 		client_id: 'xxxroei',
 		status: 'Uploaded',
@@ -67,20 +62,7 @@ flickrfeedControllers.controller('ExampleController',
 		rank: 1,
 		language: "Global"
 	};
-	$scope.specialValue = {
-		"id": "12345",
-		"value": "green"
-	};
-	// $scope.scheme = {
-	// 	statuses: [
-	// 		'Approved','Declined','Reported'
-	// 	]
-	// };
 
-	// $http.get('http://develop.balerion.im:8000/api/scheme').then(function successCallback(response) {
-	// 	console.log(response);
-	// 	$scope.scheme = response;
-	// });
 	$scope.scheme = {
 		"copy_rights": ["Watermark", "Professional", "UserGenerated"],
 		"objectionable": ["Violence", "Porn", "Sensitive", "Rude"],
@@ -89,6 +71,12 @@ flickrfeedControllers.controller('ExampleController',
 		"ranks": ["1", "2", "3", "4", "5"],
 		"statuses": ["Approved", "Declined", "Pending", "Unknown", "Uploaded", "Reported"]
 	};
+
+	balerionDataService.getScheme().success(function (response) {
+		//Dig into the response to get the relevant data
+		console.log("got scheme!");
+		console.log(response);
+	});
 
 	// calling our submit function.
 	$scope.submitForm = function(el) {

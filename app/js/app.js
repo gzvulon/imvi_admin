@@ -1,9 +1,8 @@
 'use strict';
 
-var app = angular.module("app", ["xeditable"]);
-
 var flickrfeedApp = angular.module('flickrfeedApp', [
   'flickrfeedControllers',
+  'flickrfeedServices',
   'flickrfeedFilters',
   'ngRoute',
   'ngAnimate',
@@ -29,3 +28,4 @@ flickrfeedApp.config(['$routeProvider',
         redirectTo: '/feed/potato'
       });
   }]);
+
