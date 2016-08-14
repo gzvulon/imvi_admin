@@ -19,7 +19,7 @@ flickrfeedControllers.controller('Navbar',
 	});
 
 flickrfeedControllers.controller('FeedListCtrl',
-	function ($scope, $http, $routeParams, $location, Tagger) {
+	function ($scope, $http, $routeParams, $location, Tagger, balerionDataService) {
 		$scope.tag = Tagger;
 		$scope.loading = true;
 		$scope.tag.text = $routeParams.tag;
@@ -48,19 +48,27 @@ flickrfeedControllers.controller('FeedListCtrl',
 			el.showVideo = true;
 		};
 
-		$scope.scheme = {
-			"copy_rights": ["Watermark", "Professional", "UserGenerated"],
-			"objectionable": ["Violence", "Porn", "Sensitive", "Rude"],
-			"user_channels": ["Funny", "News", "Animals", "Sports", "Music", "Food", "Travel", "Fashion", "Religion", "Accidents", "Disasters", "Art", "Temporal"],
-			"languages": ["Global", "English", "Hebrew", "Russian", "Spanish", "Portuguese", "Arabic"],
-			"ranks": ["1", "2", "3", "4", "5"],
-			"statuses": ["Approved", "Declined", "Pending", "Unknown", "Uploaded", "Reported"]
-		};
+		// $scope.scheme = {
+		// 	"copy_rights": ["Watermark", "Professional", "UserGenerated"],
+		// 	"objectionable": ["Violence", "Porn", "Sensitive", "Rude"],
+		// 	"user_channels": ["Funny", "News", "Animals", "Sports", "Music", "Food", "Travel", "Fashion", "Religion", "Accidents", "Disasters", "Art", "Temporal"],
+		// 	"languages": ["Global", "English", "Hebrew", "Russian", "Spanish", "Portuguese", "Arabic"],
+		// 	"ranks": ["1", "2", "3", "4", "5"],
+		// 	"statuses": ["Approved", "Declined", "Pending", "Unknown", "Uploaded", "Reported"]
+		// };
+
+		balerionDataService.getScheme().success(function (response) {
+			//Dig into the response to get the relevant data
+			$scope.scheme = response;
+			console.log("got scheme!");
+			console.log(response);
+		});
+
 	});
 
 
 flickrfeedControllers.controller('ExampleController',
-	['$scope', '$http', 'balerionDataService', function($scope, $http, balerionDataService) {
+	['$scope', '$http', 'balerionDataService', function($scope, $http) {
 	$scope.userform = {
 		client_id: 'xxxroei',
 		status: 'Uploaded',
@@ -72,16 +80,9 @@ flickrfeedControllers.controller('ExampleController',
 		language: "Global"
 	};
 
-	// balerionDataService.getScheme().success(function (response) {
-	// 	//Dig into the response to get the relevant data
-	// 	$scope.scheme = response;
-	// 	console.log("got scheme!");
-	// 	console.log(response);
-	// });
-
 	// calling our submit function.
 	$scope.submitForm = function(el) {
-		var url = 'http://develop.balerion.im:8000/api/content';
+		var url = 'http://develop.balerion.im:9797/api/content';
 		var data = $scope.userform; //forms user object
 		data.contentId = el.contentId;
 		console.log("Send data to server...");
@@ -113,21 +114,3 @@ flickrfeedControllers.controller('ExampleController',
 			});
 	};
 }]);
-
-
-
-flickrfeedControllers.controller('RadiolistCtrl', function($scope, $filter) {
-	$scope.user = {
-		status: 2
-	};
-
-	$scope.statuses = [
-		{value: 1, text: 'status1'},
-		{value: 2, text: 'status2'}
-	];
-
-	$scope.showStatus = function() {
-		var selected = $filter('filter')($scope.statuses, {value: $scope.user.status});
-		return ($scope.user.status && selected.length) ? selected[0].text : 'Not set';
-	};
-});
