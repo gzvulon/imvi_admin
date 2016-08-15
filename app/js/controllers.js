@@ -26,11 +26,17 @@ flickrfeedControllers.controller('FeedListCtrl',
 		$scope.emptylist = false;
 
 		console.log("v");
-		$http.get('http://develop.balerion.im:9797/api/contents').then(function successCallback(response) {
+		$http.get('http://develop.balerion.im:9797/api/test_content').then(function successCallback(response) {
+			$scope.loading = false;
 			console.log(response);
 			for(var i=0; i<response.data.length; ++i){
 				var el = response.data[i];
-				el.showVideo = false
+				el.showVideo = true;
+				el.form = {
+					title: el.title,
+					tags: el.tags,
+					state: el.state
+				};
 			}
 			$scope.feed = {items:response.data};
 
@@ -68,18 +74,37 @@ flickrfeedControllers.controller('FeedListCtrl',
 
 
 flickrfeedControllers.controller('ExampleController',
-	['$scope', '$http', 'balerionDataService', function($scope, $http) {
-	$scope.userform = {
-		client_id: 'xxxroei',
-		status: 'Uploaded',
-		tags: {
-			"Funny": true,
-			"Temporal": false
-		},
-		rank: 1,
-		language: "Global"
-	};
+	['$scope', '$http', function($scope, $http) {
+	$scope.init = function(el, scheme) {
+		$scope.userform = {
+			client_id: 'xxxroei',
+			state: el.state,
+			title: el.title,
+			language: el.language,
+			rank: el.rank,
+		};
+		var tag_name = "";
 
+		if (scheme) {
+			for (var i = 0; i < scheme.user_channels.length; ++i) {
+				tag_name = scheme.user_channels[i];
+				$scope.userform[tag_name] = el.tags.includes(tag_name);
+			}
+		}
+
+		function addTagsToScope(tags) {
+			for(var j=0; j <tags.length; ++j){
+				tag_name = tags[j];
+				if (el.tags.includes(tag_name)) {
+					$scope.userform.tags[tag_name] = true;
+				}
+			}
+		}
+		addTagsToScope(scheme.objectionable);
+		addTagsToScope(scheme.copy_rights);
+
+		// $scope.tags[tag] =
+	};
 	// calling our submit function.
 	$scope.submitForm = function(el) {
 		var url = 'http://develop.balerion.im:9797/api/content';

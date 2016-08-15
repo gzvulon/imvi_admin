@@ -17,13 +17,13 @@
 
 			<div class="feed-item-text">
 				<div class="feed-description">
-					<form name="myForm" ng-controller="ExampleController" ng-submit="submitForm(el)">
+					<form name="myForm" ng-controller="ExampleController" ng-submit="submitForm(el)" ng-init="init(el, scheme)">
 						<div class="row odd-row input-group-lg">
 							<div class="col-md-4">
 								<h5>Title:</h5>
 							</div>
 							<label class="edit-inline">
-								<input type="text" ng-model="el.title" ng-value="el.title">
+								<input type="text" ng-model="userform.title">
 							</label>
 						</div>
 
@@ -32,9 +32,9 @@
 								<h5>State:</h5>
 							</div>
 
-							<div class="col-md-2" ng-repeat="field in scheme.statuses">
+							<div class="col-md-2" ng-repeat="field in scheme.states">
 								<label class="checkbox-inline">
-									<input type="radio" ng-model="userform.status" ng-value="field">
+									<input type="radio" ng-model="userform.state" ng-value="field">
 									{{ field }}
 								</label>
 							</div>
@@ -46,7 +46,7 @@
 							</div>
 							<div class="col-md-2" ng-repeat="tag in scheme.user_channels">
 								<label class="checkbox-inline">
-									<input type="checkbox" ng-model="userform.tags[tag]">
+									<input type="checkbox" ng-model="userform[tag]">
 									{{ tag }} <br/>
 								</label>
 							</div>
@@ -59,7 +59,7 @@
 
 							<div class="col-md-2" ng-repeat="tag in scheme.objectionable">
 								<label class="checkbox-inline">
-									<input type="checkbox" ng-model="userform.tags[tag]">
+									<input type="checkbox" ng-model="userform[tag]">
 									{{ tag }} <br/>
 								</label>
 							</div>
@@ -72,7 +72,7 @@
 
 							<div class="col-md-2" ng-repeat="tag in scheme.copy_rights">
 								<label class="checkbox-inline">
-									<input type="checkbox" ng-model="userform.tags[tag]">
+									<input type="checkbox" ng-model="userform[tag]">
 									{{ tag }} <br/>
 								</label>
 							</div>
@@ -110,8 +110,9 @@
 							<span class="glyphicon glyphicon-flash"></span> Submit!
 						</button>
 
-						<br>
-						<tt>Input = {{ userform | json}}</tt><br/>
+
+						<!--<br><tt>Input = {{ userform | json}}</tt><br/>-->
+						<!--<br><tt>Input = {{ el | json}}</tt><br/>-->
 					</form>
 				</div>
 			</div>

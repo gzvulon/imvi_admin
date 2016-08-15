@@ -29,3 +29,7 @@ flickrfeedApp.config(['$routeProvider',
       });
   }]);
 
+flickrfeedApp.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.timeout = 60000;
+}]);
+
