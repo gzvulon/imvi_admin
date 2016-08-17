@@ -1,6 +1,7 @@
 'use strict';
 
 var flickrfeedControllers = angular.module('flickrfeedControllers', []);
+var server_base_url = '//develop.balerion.im';
 
 flickrfeedControllers.controller('Ctrl', function($scope) {
 	$scope.user = {
@@ -25,43 +26,40 @@ flickrfeedControllers.controller('FeedListCtrl',
 		$scope.tag.text = $routeParams.tag;
 		$scope.emptylist = false;
 
-		console.log("v");
-		$http.get('http://develop.balerion.im:9797/api/test_content').then(function successCallback(response) {
-			$scope.loading = false;
-			console.log(response);
-			for(var i=0; i<response.data.length; ++i){
-				var el = response.data[i];
-				el.showVideo = true;
-				el.form = {
-					title: el.title,
-					tags: el.tags,
-					state: el.state
-				};
-			}
-			$scope.feed = {items:response.data};
+		console.log("feed list ctrl: ");
+		console.log($scope.tag.text);
 
-			// this callback will be called asynchronously
-			// when the response is available
-		}, function errorCallback(response) {
-			console.log("e");
-			console.log(response);
+		$scope.$watch('tag.text', function() {
+			var url = server_base_url + '/api/admin/' + $scope.tag.text;
+			$http.get(url).then(function successCallback(response) {
+				$scope.loading = false;
+				console.log(response);
+				for (var i = 0; i < response.data.length; ++i) {
+					var el = response.data[i];
+					el.showVideo = true;
+					el.form = {
+						title: el.title,
+						tags: el.tags,
+						state: el.state
+					};
+					el.videoSrc = "";
+				}
+				$scope.feed = {items: response.data};
 
-			// called asynchronously if an error occurs
-			// or server returns response with an error status.
+				// this callback will be called asynchronously
+				// when the response is available
+			}, function errorCallback(response) {
+				console.log("e");
+				console.log(response);
+
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+			});
 		});
 
 		$scope.showImage = function (el){
 			el.showVideo = true;
 		};
-
-		// $scope.scheme = {
-		// 	"copy_rights": ["Watermark", "Professional", "UserGenerated"],
-		// 	"objectionable": ["Violence", "Porn", "Sensitive", "Rude"],
-		// 	"user_channels": ["Funny", "News", "Animals", "Sports", "Music", "Food", "Travel", "Fashion", "Religion", "Accidents", "Disasters", "Art", "Temporal"],
-		// 	"languages": ["Global", "English", "Hebrew", "Russian", "Spanish", "Portuguese", "Arabic"],
-		// 	"ranks": ["1", "2", "3", "4", "5"],
-		// 	"statuses": ["Approved", "Declined", "Pending", "Unknown", "Uploaded", "Reported"]
-		// };
 
 		balerionDataService.getScheme().success(function (response) {
 			//Dig into the response to get the relevant data
@@ -82,6 +80,7 @@ flickrfeedControllers.controller('ExampleController',
 			title: el.title,
 			language: el.language,
 			rank: el.rank,
+			tags: {}
 		};
 		var tag_name = "";
 
@@ -107,7 +106,7 @@ flickrfeedControllers.controller('ExampleController',
 	};
 	// calling our submit function.
 	$scope.submitForm = function(el) {
-		var url = 'http://develop.balerion.im:9797/api/content';
+		var url = server_base_url + '/api/content';
 		var data = $scope.userform; //forms user object
 		data.contentId = el.contentId;
 		console.log("Send data to server...");

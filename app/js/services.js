@@ -4,7 +4,7 @@ var flickrfeedServices = angular.module('flickrfeedServices', []);
 
 flickrfeedServices.factory('balerionDataService', ['$http', function ($http) {
 
-    var urlBase = 'http://develop.balerion.im:8000';
+    var urlBase = 'http://develop.balerion.im';
 
     var balerionDataService = {};
 

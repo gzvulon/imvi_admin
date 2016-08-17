@@ -25,7 +25,7 @@ flickrfeedApp.config(['$routeProvider',
         controller: 'FeedListCtrl'
       }).
       otherwise({
-        redirectTo: '/feed/potato'
+        redirectTo: '/feed/roei'
       });
   }]);
 

@@ -10,7 +10,7 @@
 		<li ng-repeat="el in feed.items" class="feed-item">
 			<div class="feed-item-img">
 				<img src="{{el.thumbnailUrl}}" ng-click="showImage(el)" ng-hide="el.showVideo"/>
-				<video width="320" height="280" controls ng-show=el.showVideo>
+				<video controls ng-show=el.showVideo class="feed-item-video">
 					<source src="{{el.cdnUrl | trusted }}" type="video/mp4">
 				</video>
 			</div>
@@ -54,7 +54,7 @@
 
 						<div class="row even-row">
 							<div class="col-md-4">
-								<h5>Objectionable Channels:</h5>
+								<h5>Objectionable tags:</h5>
 							</div>
 
 							<div class="col-md-2" ng-repeat="tag in scheme.objectionable">
@@ -65,7 +65,22 @@
 							</div>
 						</div>
 
+
 						<div class="row odd-row">
+							<div class="col-md-4">
+								<h5>Mild Objectionable tags:</h5>
+							</div>
+
+							<div class="col-md-2" ng-repeat="tag in scheme.mild_objectionable">
+								<label class="checkbox-inline">
+									<input type="checkbox" ng-model="userform[tag]">
+									{{ tag }} <br/>
+								</label>
+							</div>
+						</div>
+
+
+						<div class="row even-row">
 							<div class="col-md-4">
 								<h5>Copy Rights:</h5>
 							</div>
@@ -78,7 +93,7 @@
 							</div>
 						</div>
 
-						<div class="row even-row">
+						<div class="row odd-row">
 							<div class="col-md-2">
 								<h5>Ranks:</h5>
 							</div>
@@ -92,7 +107,7 @@
 						</div>
 
 						<!-- Languages -->
-						<div class="row odd-row">
+						<div class="row even-row">
 							<div class="col-md-4">
 								<h5>Languages:</h5>
 							</div>

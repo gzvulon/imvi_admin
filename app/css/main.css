@@ -5,7 +5,7 @@ body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1500px;
   min-width: 260px;
   margin-left: auto;
   margin-right: auto;
@@ -85,7 +85,7 @@ ul > li {
   list-style-type: none; }
 
 .feed-item {
-  height: 350px;
+  height: 430px;
   background-color: #FFF;
   margin-bottom: 50px;
   position: relative;
@@ -111,12 +111,12 @@ ul > li {
   top: 0;
   bottom: 0;
   right: 0;
-  left: 320px;
+  left: 530px;
   padding: 0px 15px; }
 
 .feed-item-img {
-  width: 320px;
-  height: 350px;
+  width: 520px;
+  height: 430px;
   overflow: hidden;
   display: inline-block;
   position: relative;
@@ -135,6 +135,11 @@ ul > li {
     left: -9999px;
     right: -9999px;
     margin: auto; }
+
+.feed-item-video {
+  width: 520px;
+  height: 430px;
+}
 
 .truncate {
   white-space: nowrap;
@@ -337,4 +342,8 @@ a.title {
 .even-row {
   background-color: lightgray;
   padding: 0 5px;
+}
+
+.btn {
+  margin-top: 14px
 }
